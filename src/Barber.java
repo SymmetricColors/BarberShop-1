@@ -2,8 +2,6 @@
  * Created by AaronJordan on 3/31/14.
  */
 
-import java.util.concurrent.*;
-
 public class Barber extends Thread
 {
     public Barber() {}
@@ -14,11 +12,11 @@ public class Barber extends Thread
         {
             try
             {
-                SleepingBarber.customers.acquire();
-                SleepingBarber.accessSeats.release();
-                SleepingBarber.numberOfFreeSeats++;
-                SleepingBarber.barber.release();
-                SleepingBarber.accessSeats.release();
+                Control.customers.acquire();
+                Control.accessSeats.release();
+                Control.numberOfFreeSeats++;
+                Control.barber.release();
+                Control.accessSeats.release();
                 this.cutHair();
             }
             catch (InterruptedException ex) {}

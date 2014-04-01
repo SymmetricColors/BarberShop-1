@@ -18,18 +18,18 @@ public class Customer extends Thread
         {
             try
             {
-                SleepingBarber.accessSeats.acquire();
+                Control.accessSeats.acquire();
 
-                if (SleepingBarber.numberOfFreeSeats > 0)
+                if (Control.numberOfFreeSeats > 0)
                 {
                     System.out.println("Customer " + this.iD + " just sat down.");
-                    SleepingBarber.numberOfFreeSeats--;
-                    SleepingBarber.customers.release();
-                    SleepingBarber.accessSeats.release();
+                    Control.numberOfFreeSeats--;
+                    Control.customers.release();
+                    Control.accessSeats.release();
 
                     try
                     {
-                        SleepingBarber.barber.acquire();
+                        Control.barber.acquire();
                         notCut = false;
                         this.get_haircut();
                     }
@@ -38,7 +38,7 @@ public class Customer extends Thread
                 else
                 {
                     System.out.println("There are no free seats. Customer " + this.iD + " has left the barbershop.");
-                    SleepingBarber.accessSeats.release();
+                    Control.accessSeats.release();
                     notCut = false;
                 }
             }
