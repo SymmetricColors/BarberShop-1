@@ -22,7 +22,7 @@ public class Customer extends Thread
 
                 if (Control.numberOfFreeSeats > 0)
                 {
-                    System.out.println("Customer " + this.iD + " just sat down.");
+                    System.out.println("Customer " + this.iD + " just sat down");
                     Control.numberOfFreeSeats--;
                     Control.customers.release();
                     Control.accessSeats.release();
@@ -51,7 +51,8 @@ public class Customer extends Thread
         System.out.println("Customer " + this.iD + " is getting his hair cut");
         try
         {
-            sleep(5000);
+            sleep(2500);
+            System.out.println("Customer " + this.iD + " has finished his haircut and is leaving the barbershop.");
         }
         catch (InterruptedException ex) {}
     }

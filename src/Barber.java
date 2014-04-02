@@ -8,10 +8,11 @@ public class Barber extends Thread
 
     public void run()
     {
-        while (true)
+        while (Control.customerCounter > 0)
         {
             try
             {
+                Control.customerCounter--;
                 Control.customers.acquire();
                 Control.accessSeats.release();
                 Control.numberOfFreeSeats++;
